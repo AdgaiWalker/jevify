@@ -1,26 +1,113 @@
 # Jevify ⚡️
 
-<div align="center">
+面向现代 AI 编码助手（Claude Code / Cursor / Codex / Antigravity）的**极轻量级认知门禁与额度守卫技能**。装好后用大白话提问，AI 自动帮你把代码重构为「三级快思考门禁」与「访客额度守卫」架构。
 
-**面向现代 AI 应用与 Agent 运行时的「轻骑兵级认知门禁与额度守卫」**  
-*The Ultra-Lightweight Cognitive Gateway & Quota Guard for AI Applications & Agent Runtimes*
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Dependencies: Zero](https://img.shields.io/badge/Dependencies-Zero-green.svg)](./jev_client.ts)
-[![Latency: 0ms~1ms](https://img.shields.io/badge/Fast--Path-0ms~1ms-orange.svg)](./docs/TECHNICAL_SPEC.md)
-[![Tokens Saved: 40%+](https://img.shields.io/badge/Tokens_Saved-42.8%25-brightgreen.svg)](./examples/adgaiwalker-case.md)
-[![Fail-Open: 100%](https://img.shields.io/badge/Fail--Open-100%25-success.svg)](./docs/PRD.md)
-
-**“别再为一句‘你好’烧你的大模型 Token 和访客配额。”**  
-*Stop burning expensive tokens and visitor quotas on "Hello".*
-
-</div>
+**核心哲学**：别再为一句“你好”烧你的大模型 Token 和访客配额。如无必要，勿唤醒大模型；如无必要，勿扣减用户额度。
 
 ---
 
-## ⚡️ 核心收益（实测基准）
+## 安装只要一句话
 
-基于生产环境真实全站流量改造（[Walker / iwalk.pro 实战案例](./examples/adgaiwalker-case.md)）实测数据：
+打开 **Claude Code / Cursor / Codex**（或任何能执行命令的 AI Agent），粘贴：
+
+```text
+帮我安装 https://github.com/AdgaiWalker/jevify
+```
+
+AI 会自己把它装成 skill。
+
+> 提示：网页版聊天工具（ChatGPT 网页版、Claude 网页版等）不能执行本地 shell 命令，装不了。
+
+---
+
+## 装好后这样用
+
+```text
+帮我用 jevify 扫描当前项目，看看有哪些地方在无防备地烧大模型 Token
+```
+```text
+用 jevify 的方法，把 src/api/chat.ts 改造成三级快思考门控
+```
+```text
+我的站访客打两句招呼就把 15 次试用额度扣完了，用 jevify 帮我加上额度豁免
+```
+```text
+帮我用双流推测并发优化大模型请求，让 JEV 判定和模型 prefill 同时跑，0 附加延迟
+```
+```text
+为我的打招呼接口加上借道探活，底座大模型欠费或挂掉时诚实提示，防假装存活
+```
+
+---
+
+<details>
+<summary>更多场景提示词（8 个进阶场景）</summary>
+
+### 1. 本地工程体检与脆弱点排查
+```text
+用 jevify 扫描我的项目代码目录（如 ./src 或 ./apps），排查哪些 LLM 调用没有前置门禁、哪些接口会将闲聊误扣用户额度，并输出一份优化建议清单。
+```
+
+### 2. 接口三级时延金字塔重构
+```text
+参考 jevify 的规范，帮我重构我的对话接口：加入 Level 1 严格前缀锚定正则（0ms 响应打招呼与身份探询）、Level 2 进程内 LRU 缓存（0ms 命中高频重复问询），并将未命中流量分流给底座大模型。
+```
+
+### 3. 访客配额豁免与线索防污染
+```text
+我的系统给未注册访客分配了 15 次免费试用配额。按 jevify 的思路重构额度管理逻辑：当判定为打招呼、身份问询时，豁免扣除配额（不调 consumeQuota），且不要把这些垃圾问候写入业务线索库（Clue 表）。
+```
+
+### 4. 双流推测并发与零延迟熔断 (Speculative Abort)
+```text
+我担心前置门禁会增加正常提问的首字延迟。帮我实现 jevify 的双流推测并发机制：收到请求同时唤醒 JEV 快速判定与底座大模型连接；如果 JEV 50ms 内判定为轻量问候，立即通过 AbortController 中止大模型；如果判定为复杂业务问题，无缝继续大模型输出。
+```
+
+### 5. 影子探针借道探活 (Shadow Health Ping)
+```text
+按 jevify 的防装活设计：当命中本地静态规则秒回“你好”时，后台异步打一个 1-Token 的底座微型探针。如果底座大模型发生 401 欠费或 500 宕机，把状态标为 DEGRADED 并在直出卡片上标注降级提示，拒绝虚假存活。
+```
+
+### 6. DeepSeek Harness 运行时准入拦截
+```text
+我是 DeepSeek Harness 用户。请帮我编写一个 Harness 的 admissionHook 准入中间件：在分配会话锁、加载数十个工具 Schema 和初始化沙箱目录前，直接在入口短路轻量流量，提升单机并发 QPS。
+```
+
+### 7. Express / NestJS 后端中间件接入
+```text
+帮我把 jevify 封装成一个 NestJS / Express 守卫中间件（Guard/Middleware），全局守护所有打向 /api/v1/chat 的流量，包含 100% Fail-Open 柔性降级。
+```
+
+### 8. Python / FastAPI 后端极简接入
+```text
+使用 jevify 的零依赖 Python 客户端（jev_client.py），在我的 FastAPI 路由中增加非自回归快思考门控与 5MB 内存 LRU 缓存。
+```
+
+</details>
+
+---
+
+<details>
+<summary>能力列表（6 张核心能力卡）</summary>
+
+| 能力卡 | 解决什么问题 | 关键机制 |
+| :--- | :--- | :--- |
+| `jevify-scanner` ★ | 扫描项目中脆弱、昂贵、无防备的自回归 LLM 调用 | AST / 源码正则嗅探，输出高风险代码行与改造建议 |
+| `jevify-3tier-fastpath` ★ | 浅层问候与高频问题首字延迟从 2.4s 降至 0ms~1ms | L1 严格前缀正则 + L2 内存 LRU (<5MB) + L3 JEV 系统一 |
+| `jevify-quota-guard` ★ | 避免访客闲聊烧光试用配额，避免客服/线索库被垃圾数据污染 | 语义识别后动态豁免 `quota.consume()`，拦截垃圾数据入库 |
+| `jevify-speculative` | 彻底打破前置网关增加 100ms 物理 RTT 的悖论 | 双流并发派发，JEV 50ms 拦截即 `AbortController.abort()` 大模型 |
+| `jevify-shadow-health` | 解决静态秒回导致的“大模型其实挂了还在装活”信任危机 | 毫秒秒回同时异步借道 1-Token 探针，连通性异常即诚实降级 |
+| `jevify-harness-admission` | 避免打一句招呼误触发数十个工具 Schema 解析与沙箱锁 | 在 Agent Runtime 核心生命周期入口前透明短路 |
+
+★ = 核心能力；开箱即用代码模版见 `templates/` 目录。
+
+</details>
+
+---
+
+## ⚡️ 真实工业落地基准（实测对比）
+
+基于生产全站流量改造（[Walker / iwalk.pro 实战案例](./examples/adgaiwalker-case.md)）实测数据：
 
 | 评测维度 | 传统纯自回归 (改造前) | Jevify 认知门禁 (改造后) | 收益倍数 / 幅度 |
 | :--- | :--- | :--- | :--- |
@@ -35,132 +122,59 @@
 
 ---
 
-## 🧭 产品定位：不做什么，做什么 (Product Positioning)
+## 🧭 做什么，坚决不做什么
 
-Jevify 的边界极其清晰，绝不沦为臃肿的大型基建：
+| 领域 | Jevify 的态度 | 为什么这么定？ |
+| :--- | :---: | :--- |
+| **API 协议转换 / 100 家模型聚合** | ❌ **坚决不做** | 属于基础搬砖，LiteLLM / OneAPI 已做得很成熟，不是认知壁垒。 |
+| **外挂向量数据库的语义缓存** | ❌ **坚决不做** | Milvus / Chroma 运维太重、冷启动慢。我们只靠 0ms 正则与 5MB LRU。 |
+| **重型 Agent 运行时** | ❌ **坚决不做** | 不取代 LangChain 或 Harness，我们只做它们进门前的准入守卫。 |
+| **自回归长文本生成** | ❌ **坚决不做** | 遇到深度逻辑与复杂代码，100% 放心交给慢思考大模型。 |
+| **三级时延金字塔 (0ms $\rightarrow$ 0ms $\rightarrow$ 50ms)** | ✅ **坚决深耕** | 把 80% 浅层高频请求在物理前沿化解。 |
+| **业务级配额守卫与线索防污染** | ✅ **坚决深耕** | 全网首创保护试用额度，让访客把额度留给真正的正事。 |
+| **双流推测并发与主动熔断** | ✅ **坚决深耕** | 50ms 并发拦截掐断大模型，正经提问 0 附加延迟。 |
+| **影子探针借道探活** | ✅ **坚决深耕** | 动态同步底座健康度，杜绝秒回假装存活。 |
+| **极轻交付（Zero-Dependency）** | ✅ **坚决深耕** | 纯原生单文件，拷进项目就能跑。 |
 
+---
+
+## 📚 四大核心产品与技术支柱文档
+
+项目遵循正规产品与技术研发体系，提供完整规格文档：
+
+* 📄 **[产品需求规格书 (PRD)](./docs/PRD.md)**：深入剖析 80/20 幂律、4 类用户画像痛点、功能与 NFR SLA、四重兜底与商业 ROI。
+* 📘 **[非自回归系统一与认知网关白皮书](./docs/WHITEPAPER.md)**：论述自回归生成四大工程之墙，定义 Choice / Score / Noul 数学基元规范与双系统认知分工理论。
+* 🗺️ **[产品演进路线图 (2026-2027)](./docs/ROADMAP.md)**：规划单站投产 $\rightarrow$ 推测并发开源 $\rightarrow$ Harness/IDE生态 $\rightarrow$ 企业级网关与规则市场四阶段演进。
+* 🛠️ **[系统架构与工程落地技术方案](./docs/TECHNICAL_SPEC.md)**：包含三级门控、严格前缀正则、5MB 内存 LRU、双流推测并发与 Harness 准入钩子源码级实现。
+
+---
+
+## 🔄 更新
+
+对 AI 说：
 ```text
-                  【jevify 核心价值六边形】
-                  
-                      1. 三级时延阶梯
-                    (0ms → 0ms → 50ms)
-                            /\
-                           /  \
-     6. 零依赖极轻交付    /    \    2. 业务配额守卫
-     (Zero-Dep 单文件)  /      \   (免扣次数/防污染)
-                       /        \
-                      /          \
-    5. Harness 准入钩子 \        /   3. 双流推测并发
-      (沙箱启动前化解)   \      /   (0 附加 RTT 熔断)
-                          \    /
-                           \  /
-                            \/
-                      4. 借道探活探针
-                      (防装活/真实心跳)
+帮我更新 jevify skill
 ```
-
-### ❌ 坚决不做什么 (What NOT to Do)
-1. **不做协议转换与模型聚合代理**：抹平 100 家模型参数是 LiteLLM / OneAPI 的事，Jevify 专注在最前沿当守门员；
-2. **不做外挂向量数据库的语义缓存**：坚决不引入 Milvus / Chroma / FAISS，拒绝冷启动构建索引和复杂持久化运维；
-3. **不做重工业级 Agent 运行时**：不取代 LangChain 或 DeepSeek Harness，不做复杂多步工具执行树与沙箱编排；
-4. **不做自回归长文本生成**：深度推理、多步代码与长篇解答，**100% 放心交给慢思考大模型**；
-5. **不做重型基础设施绑定**：不强制绑定 Docker、K8s 侧车或 Envoy 网关。
-
-### ✅ 聚焦深耕做什么 (What TO Do)
-1. **做三级时延收敛金字塔**：L1 严格前缀正则 (0ms) $\rightarrow$ L2 内存 LRU 缓存 (0ms) $\rightarrow$ L3 JEV 系统一非自回归裁决 (<80ms)；
-2. **做业务级配额守卫与线索防污染**：识别问候与试探直接**豁免配额扣减**，并阻断向 CRM / 线索库写入垃圾数据；
-3. **做双流推测并发与主动熔断**：并行派发 JEV 与大模型，50ms 拦截即 `AbortController.abort()` 掐断大模型（0 费用），未拦截则 0 附加延迟；
-4. **做借道探活影子探针**：秒回问候的同时异步发射 1-Token 微探针，底重大模型故障时诚实展示降级提示，**彻底拒绝假装存活**；
-5. **做 Agent 运行时准入钩子**：在会话加锁、工具树展开与沙箱分配之前短路浅层流量，单机 QPS 提升 10~20 倍；
-6. **做极致的零依赖交付**：纯原生代码，单文件即可嵌入项目。
+AI 会自动在本地执行 `git pull` 更新到最新规则与模板。
 
 ---
 
-## 📚 四大核心支柱文档 (4 Pillar Documents)
+## 常见问题 (FAQ)
 
-项目严格遵从专业产品研发规范，提供全套生产级规格文档：
+**Q: 为什么不需要 npm install 或 pip install？**  
+A: Jevify 秉持「如无必要，勿增实体」的原则。无论是 TypeScript 客户端还是 Python 客户端，均基于运行时的标准库（Fetch API / urllib）原生编写。拷入工程即用，不给你的 package.json 或 requirements.txt 增加任何第三方包袱。
 
-| 核心文档 | 文档路径 | 摘要内容 |
-| :--- | :--- | :--- |
-| 📄 **PRD (产品需求文档)** | [**`docs/PRD.md`**](./docs/PRD.md) | 完整阐述 80/20 幂律背景、4 类用户画像痛点、功能与 NFR 指标、四重兜底与商业 ROI。 |
-| 📘 **白皮书 (Whitepaper)** | [**`docs/WHITEPAPER.md`**](./docs/WHITEPAPER.md) | 深入论述自回归四大工程之墙，定义 Choice/Score/Noul 数学基元与双系统认知分工理论。 |
-| 🗺️ **产品规划 (Roadmap)** | [**`docs/ROADMAP.md`**](./docs/ROADMAP.md) | 规划 2026-2027 四阶段演进：单站投产 $\rightarrow$ 推测并发与开源 $\rightarrow$ Harness/IDE生态 $\rightarrow$ 企业级网关与规则市场。 |
-| 🛠️ **技术方案 (Tech Spec)** | [**`docs/TECHNICAL_SPEC.md`**](./docs/TECHNICAL_SPEC.md) | 详述三级门控、严格前缀正则、5MB 内存 LRU、双流推测 AbortController 与 Harness 准入钩子代码实现。 |
+**Q: 前置做门控，会不会让正经提问变得更慢？**  
+A: 不会！对于 L1/L2，正则与内存 LRU 的判定耗时小于 0.05ms，人类不可感知；对于 L3 JEV，我们引入了**双流推测并发（Speculative Dispatcher）**：请求发起时 JEV 与底座大模型同时并行建立连接。JEV 若在 50ms 内判定为放行，底座大模型此时已并行完成了 50ms 的 Prefill 预热，**没有带来任何附加延迟**。
 
----
+**Q: 正则会不会把正常的业务问题误杀了？**  
+A: 传统的正则误杀是因为写得太贪婪（例如匹配到了“AI”两个字母就拦截）。Jevify 的 L1 正则严格限定**前缀与动宾锚定**（必须以“你是”、“请问你用的底层是”等前缀起手）。用户输入“我想学AI怎么入门”，首词是“我”，严格前缀直接未命中，自动滑入后续大模型处理，生产实测误杀率为 0.00%。
 
-## 🧠 双流推测并发架构 (Speculative Architecture)
+**Q: 为什么不用向量数据库做语义缓存？**  
+A: 外挂向量数据库（如 Milvus/Chroma）需要维护嵌入模型、向量持久化、索引构建和失效策略，运维成本极高，且无法做确定性的布尔额度豁免。Jevify 坚守“5MB 内存 LRU + JEV 高维系统一”，以最轻的代码解决 80% 的生产痛点。
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as 客户端 / 访客
-    participant GW as Jevify 认知网关
-    participant Fast as 系统一 (JEV)
-    participant Slow as 系统二 (底座大模型)
-
-    User->>GW: 发送请求 "你好啊"
-    par 双流并行派发 (Speculative Dual-Stream)
-        GW->>Fast: 发起非自回归判定 (预期 50ms)
-        GW->>Slow: 提前建立 LLM 流式连接 (绑定 AbortController)
-    end
-    Fast-->>GW: [50ms 裁决命中: GREETING 问候]
-    critical 零费用主动熔断
-        GW->>Slow: 立即执行 abortController.abort()
-        Slow-->>GW: 断开连接 (消耗 0 Token，0 费用)
-    end
-    GW-->>User: 毫秒级直出友好问候 (0 额度扣减)
-```
-
-> **0 附加延迟的奥秘**：  
-> 当访客提出真实的复杂业务问题时，JEV 在 50ms 判定为“复杂任务”静默退出；此时大模型在后台已经并行完成 50ms 的 Prefill 预热，**没有给用户的首字吐出带来任何一毫秒的额外等待**！
-
----
-
-## 📦 快速开始与交付形态
-
-不需要 `npm install`，不需要 `pip install`，零外部依赖：
-
-### 方式 1：作为 AI 编码助手 Skill（推荐）
-将 [`SKILL.md`](./SKILL.md) 放入你的 Cursor / Claude Code / Antigravity 项目规则中，对 AI 说：
-> *“用 jevify 帮我优化这个聊天接口，加入三级快思考门控并守护访客额度。”*
-
-AI 将自动为你生成符合 L1/L2/L3 渐进规范的生产级代码！
-
-### 方式 2：使用极简单文件客户端
-* **TypeScript / Node.js**（支持 Node 18+、Bun、Deno、Cloudflare Workers）：
-  ```typescript
-  import { JevClient, Choice } from './jev_client';
-
-  const client = new JevClient({ apiKey: process.env.JEV_API_KEY });
-  const result = await client.decide('你好呀', {
-    intent: new Choice('判定意图', {
-      chitchat: '日常问候或打招呼',
-      business: '真正的业务咨询或技术问题',
-    }),
-  });
-  ```
-* **Python 3.8+**（纯标准库 `urllib` 实现，零依赖）：
-  ```python
-  from jev_client import JevClient, Choice
-
-  client = JevClient(api_key=os.getenv("JEV_API_KEY"))
-  result = client.decide(
-      state="你是啥模型？",
-      questions={
-          "intent": Choice("判定意图", {
-              "identity": "询问模型身份或底层架构",
-              "problem": "具体业务需求"
-          })
-      }
-  )
-  ```
-
-### 方式 3：一键扫描本地项目脆弱点
-运行内置扫描工具，自动排查代码中无防备的大模型调用与额度烧毁隐患：
-```bash
-python3 tools/jev_scanner.py ./src
-```
+**Q: JEV 服务网络抖动或超时了怎么办？**  
+A: **100% Fail-Open 柔性降级**。任何超时或网络异常，系统均会静默捕获，并直接透传底重大模型正常生成，绝对不卡阻正常业务链路。
 
 ---
 
@@ -169,14 +183,14 @@ python3 tools/jev_scanner.py ./src
 ```text
 jevify/
 ├── docs/                       # 四大核心支柱技术与业务文档
-│   ├── PRD.md                  # 📄 生产级产品需求规格书
+│   ├── PRD.md                  # 📄 生产级产品需求规格书 (PRD)
 │   ├── WHITEPAPER.md           # 📘 非自回归系统一与认知网关白皮书
 │   ├── ROADMAP.md              # 🗺️ 产品演进路线图 (2026-2027)
 │   └── TECHNICAL_SPEC.md       # 🛠️ 系统架构与工程落地技术方案
 ├── templates/                  # 开箱即用的三级门控与额度守卫代码模版
 │   ├── 3-tier-fastpath.ts      # 三级渐进式快思考门控模板
 │   └── quota-guard.ts          # 访客配额豁免与线索防污染模板
-├── examples/                   # 真实工业落地案例
+├── examples/                   # 真实工业生产落地报告
 │   └── adgaiwalker-case.md     # Walker / iwalk.pro 生产全站改造实录
 ├── tools/                      # 辅助工具
 │   └── jev_scanner.py          # 本地工程脆弱 LLM 调用自动化扫描器
@@ -188,6 +202,6 @@ jevify/
 
 ---
 
-## 📄 开源许可证
+## 许可证
 
-本项目基于 [MIT License](./LICENSE) 开源。遵循**「如无必要，勿增实体；如无必要，勿唤醒大模型」**的极简主义哲学。
+本项目基于 [MIT License](./LICENSE) 开源。
