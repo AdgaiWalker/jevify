@@ -1,0 +1,412 @@
+[
+  {
+    "name": "X (Twitter) - Developers, AI Researchers & Tech Twitter",
+    "description": "Real-time discussions from AI researchers (Diogo Almeida, OpenAI alumni, AI engineers), product launches, release reactions, and code snippets.",
+    "mandatory": true,
+    "score": 1.5,
+    "category": "realtime_pulse",
+    "include_prob": 0.59,
+    "rank_metric": 12.09,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.5,
+        "confidence": 0.25,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.42,
+          "2": 0.54
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "realtime_pulse",
+        "confidence": 1.0,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.0,
+          "academic_theory": 0.0,
+          "realtime_pulse": 1.0
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.59
+      }
+    }
+  },
+  {
+    "name": "TypeSafe AI Official Documentation, SDK Repos & Discord",
+    "description": "First-party API references, schema specs, release notes for jev-1.14.0, official example cookbooks, and core developer support.",
+    "mandatory": false,
+    "score": 1.99,
+    "category": "first_party_spec",
+    "include_prob": 0.78,
+    "rank_metric": 2.77,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.99,
+        "confidence": 0.98,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.99
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "first_party_spec",
+        "confidence": 1.0,
+        "probabilities": {
+          "first_party_spec": 1.0,
+          "practitioner_usage": 0.0,
+          "academic_theory": 0.0,
+          "realtime_pulse": 0.0
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.78
+      }
+    }
+  },
+  {
+    "name": "GitHub (Repos, PRs, Issues, Discussion boards)",
+    "description": "Open-source implementations, SDKs, agent frameworks (LangChain, LlamaIndex, Semantic Router) integrating Jev, wrapper libraries, and benchmark code.",
+    "mandatory": false,
+    "score": 1.97,
+    "category": "practitioner_usage",
+    "include_prob": 0.55,
+    "rank_metric": 2.52,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.97,
+        "confidence": 0.94,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.97
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "practitioner_usage",
+        "confidence": 0.97,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.98,
+          "academic_theory": 0.01,
+          "realtime_pulse": 0.01
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.55
+      }
+    }
+  },
+  {
+    "name": "arXiv.org & OpenReview (Preprint Papers & Conference Proceedings)",
+    "description": "Academic papers on RLCD, non-autoregressive decision models, expected calibration error (ECE), and System One reasoning theory.",
+    "mandatory": false,
+    "score": 1.86,
+    "category": "academic_theory",
+    "include_prob": 0.58,
+    "rank_metric": 2.44,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.86,
+        "confidence": 0.77,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.07,
+          "2": 0.89
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "academic_theory",
+        "confidence": 1.0,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.0,
+          "academic_theory": 1.0,
+          "realtime_pulse": 0.0
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.58
+      }
+    }
+  },
+  {
+    "name": "Substack & AI Engineering Blogs (Latent Space, Interconnects, Swyx)",
+    "description": "Deep-dive technical essays, founder interviews with Diogo Almeida, architectural breakdowns of System One vs System Two.",
+    "mandatory": false,
+    "score": 1.61,
+    "category": "realtime_pulse",
+    "include_prob": 0.57,
+    "rank_metric": 2.18,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.61,
+        "confidence": 0.41,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.37,
+          "2": 0.62
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "realtime_pulse",
+        "confidence": 0.32,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.45,
+          "academic_theory": 0.06,
+          "realtime_pulse": 0.49
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.57
+      }
+    }
+  },
+  {
+    "name": "Lobste.rs (Tech Computing Community)",
+    "description": "Systems programming, latency-focused architecture discussions, compiler and ML inference engineering threads.",
+    "mandatory": false,
+    "score": 1.56,
+    "category": "practitioner_usage",
+    "include_prob": 0.47,
+    "rank_metric": 2.0300000000000002,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.56,
+        "confidence": 0.36,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.39,
+          "2": 0.59
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "practitioner_usage",
+        "confidence": 0.87,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.9,
+          "academic_theory": 0.01,
+          "realtime_pulse": 0.09
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.47
+      }
+    }
+  },
+  {
+    "name": "AI Engineer World's Fair / Conference Talks & Transcripts",
+    "description": "Recorded presentations, slide decks, and transcripts from conference keynotes about production agent runtimes and calibrated decisions.",
+    "mandatory": false,
+    "score": 1.2,
+    "category": "practitioner_usage",
+    "include_prob": 0.46,
+    "rank_metric": 1.66,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.2,
+        "confidence": 0.55,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0.7,
+          "2": 0.25
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "practitioner_usage",
+        "confidence": 0.72,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.79,
+          "academic_theory": 0.0,
+          "realtime_pulse": 0.21
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.46
+      }
+    }
+  },
+  {
+    "name": "Hacker News (Y Combinator)",
+    "description": "In-depth engineering discussions, architecture critiques, performance benchmarks, and alternative perspectives on TypeSafe AI launches.",
+    "mandatory": false,
+    "score": 1.17,
+    "category": "practitioner_usage",
+    "include_prob": 0.48,
+    "rank_metric": 1.65,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.17,
+        "confidence": 0.68,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.79,
+          "2": 0.19
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "practitioner_usage",
+        "confidence": 0.65,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 0.74,
+          "academic_theory": 0.01,
+          "realtime_pulse": 0.25
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.48
+      }
+    }
+  },
+  {
+    "name": "Stack Overflow & Developer Q&A",
+    "description": "Implementation troubleshooting, error handling, JSON schema validation questions.",
+    "mandatory": false,
+    "score": 1.09,
+    "category": "practitioner_usage",
+    "include_prob": 0.49,
+    "rank_metric": 1.58,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.09,
+        "confidence": 0.78,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.85,
+          "2": 0.12
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "practitioner_usage",
+        "confidence": 1.0,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 1.0,
+          "academic_theory": 0.0,
+          "realtime_pulse": 0.0
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.49
+      }
+    }
+  },
+  {
+    "name": "Reddit (r/MachineLearning, r/LocalLLaMA, r/Artificial)",
+    "description": "Community tests, hands-on developer experiences, latency comparisons, cost breakdowns, and engineering pain points.",
+    "mandatory": false,
+    "score": 1.16,
+    "category": "practitioner_usage",
+    "include_prob": 0.41,
+    "rank_metric": 1.5699999999999998,
+    "raw_answers": {
+      "value_score": {
+        "type": "score",
+        "score": 1.16,
+        "confidence": 0.74,
+        "legend": {
+          "0": "Low value: Sparse or mostly noise/marketing",
+          "1": "Moderate value: Good secondary tutorials and general chatter",
+          "2": "High value: Direct primary source of technical architecture or active practitioner code"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.83,
+          "2": 0.16
+        }
+      },
+      "primary_category": {
+        "type": "choice",
+        "choice": "practitioner_usage",
+        "confidence": 1.0,
+        "probabilities": {
+          "first_party_spec": 0.0,
+          "practitioner_usage": 1.0,
+          "academic_theory": 0.0,
+          "realtime_pulse": 0.0
+        }
+      },
+      "include_in_top10": {
+        "type": "noul",
+        "noul": 0.41
+      }
+    }
+  }
+]

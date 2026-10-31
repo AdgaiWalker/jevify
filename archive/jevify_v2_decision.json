@@ -1,0 +1,43 @@
+{
+  "model": "jev-1.14.0",
+  "answers": {
+    "should_upgrade_to_v2": {
+      "type": "noul",
+      "noul": 0.84
+    },
+    "primary_action_strategy": {
+      "type": "choice",
+      "choice": "all_in_one_v2_upgrade",
+      "confidence": 0.98,
+      "probabilities": {
+        "all_in_one_v2_upgrade": 0.99,
+        "gradual_step_by_step": 0.01,
+        "keep_v1_as_is": 0.0
+      }
+    },
+    "architecture_maturity_rating": {
+      "type": "score",
+      "score": 1.9,
+      "confidence": 0.85,
+      "legend": {
+        "0": "Level 1 - 概念原型：缺乏真实场景检验，容易在复杂生产环境中崩溃",
+        "1": "Level 2 - 局部可用：解决部分性能问题，但缺乏业务闭环和多语言支持",
+        "2": "Level 3 - 生产级企业架构：三级分层、业务额度守护、ROI 可见、全栈多语言生态健全"
+      },
+      "probabilities": {
+        "0": 0.02,
+        "1": 0.06,
+        "2": 0.92
+      }
+    },
+    "business_impact_confidence": {
+      "type": "noul",
+      "noul": 0.77
+    }
+  },
+  "usage": {
+    "input_tokens": 2320,
+    "output_tokens": 117
+  },
+  "_latency_ms": 1214.388132095337
+}

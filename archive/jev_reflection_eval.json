@@ -1,0 +1,56 @@
+{
+  "model": "jev-1.14.0",
+  "answers": {
+    "fast_path_should_exempt_quota": {
+      "type": "noul",
+      "noul": 0.81
+    },
+    "should_add_zero_latency_cache": {
+      "type": "noul",
+      "noul": 0.81
+    },
+    "should_expand_commercial_intent": {
+      "type": "noul",
+      "noul": 0.59
+    },
+    "should_visualize_jev_roi": {
+      "type": "noul",
+      "noul": 0.74
+    },
+    "highest_priority_improvement": {
+      "type": "choice",
+      "choice": "zero_latency_cache",
+      "confidence": 0.36,
+      "probabilities": {
+        "quota_differentiation": 0.47,
+        "zero_latency_cache": 0.52,
+        "intent_expansion": 0.01,
+        "admin_roi_observability": 0.0
+      }
+    },
+    "architecture_maturity_rating": {
+      "type": "score",
+      "score": 1.99,
+      "confidence": 0.99,
+      "legend": {
+        "0": "1级 - 玩具 Demo，极度脆弱，不具备容错",
+        "1": "2级 - 初步打通，但主备链路高度耦合且容易误伤",
+        "2": "3级 - 架构清晰解耦，具备基本 fail-open 容错与门控分流",
+        "3": "4级 - 生产级完备，具备毫秒级响应、缓存、统计与细粒度配额",
+        "4": "5级 - 行业标杆级自治架构，自愈、自标定且全自动演进"
+      },
+      "probabilities": {
+        "0": 0.0,
+        "1": 0.01,
+        "2": 0.99,
+        "3": 0.0,
+        "4": 0.0
+      }
+    }
+  },
+  "usage": {
+    "input_tokens": 1348,
+    "output_tokens": 169
+  },
+  "_latency_ms": 1172.4169254302979
+}
